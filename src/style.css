@@ -281,17 +281,17 @@ button:focus {
 }
 
 .main-name {
-  color: #cd5ff8;
+  color: #37074a;
 }
 
 .Typewriter__wrapper {
   font-size: 2.2em !important;
-  color: #be6adf !important;
+  color: #a375b4b8 !important;
   font-weight: 600 !important;
 }
 .Typewriter__cursor {
   font-size: 2.4em !important;
-  color: #b562d6 !important;
+  color: #531b69 !important;
 }
 
 @media (max-width: 767px) {
@@ -740,4 +740,168 @@ button:focus {
 }
 .fork-btn-inner::after {
   display: none !important;
+}
+
+
+
+
+/* Unique Greeting Styling */
+.greeting-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Name Highlighted & Animated */
+.animated-name {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: pulse 2s infinite alternate;
+}
+
+/* Glowing Effect on Name */
+.glow-text {
+  background: linear-gradient(90deg, #eaf120, #e48c07, #f46202);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 0px 20px rgba(77, 71, 40, 0.8);
+}
+
+/* Typewriter Effect Styling */
+.typewriter-text {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #B39DDB;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Separator Line */
+.separator-line {
+  width: 60%;
+  margin: 20px auto;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Tagline Styling */
+.tagline {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 2.5rem;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); text-shadow: 0px 0px 20px rgba(239, 224, 86, 0.8); }
+  100% { transform: scale(1.05); text-shadow: 0px 0px 30px rgb(227, 208, 101); }
+}
+
+.contact-input {
+  background: #f4f7fc;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.contact-input:focus {
+  box-shadow: none;
+  border: 2px solid #5c67f2;
+}
+
+.send-btn {
+  background: #3949ab;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+}
+
+.send-btn:hover {
+  background: #283593;
+}
+
+.experience-card {
+  display: flex;
+  align-items: flex-start;
+  background: #2a2e35;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color: #fff;
+  width: 100%;
+  max-width: 800px;
+}
+
+.logo-card {
+  flex: 0 0 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1e2228;
+  padding: 10px;
+  border-radius: 8px;
+  height: 100px;
+  margin-right: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.company-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.experience-content {
+  flex: 1;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #f3c623;
+}
+
+.company {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.duration {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #bbb;
+}
+
+.description {
+  list-style: none;
+  padding: 0;
+}
+
+.description li {
+  margin-bottom: 5px;
+  font-size: 14px;
 }

@@ -1,92 +1,118 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import ProjectCard from "./ProjectCards";
+import React, { useState } from "react";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { FaGithub } from "react-icons/fa";
 import Particle from "../Particle";
-import leaf from "../../Assets/Projects/leaf.png";
-import emotion from "../../Assets/Projects/emotion.png";
-import editor from "../../Assets/Projects/codeEditor.png";
-import chatify from "../../Assets/Projects/chatify.png";
-import suicide from "../../Assets/Projects/suicide.png";
-import bitsOfCode from "../../Assets/Projects/blog.png";
+
+// Importing project images
+import bloomingtonRentals from "../../Assets/bloomingtonRentals.jpg";
+import resumeMaker from "../../Assets/resumeMaker.jpg";
+import sentimentAnalysis from "../../Assets/sentimentAnalysis.jpg";
+import ldaProject from "../../Assets/ldaProject.jpg";
+import personalWebsite from "../../Assets/personalWebsite.jpg";
+import layoffKafka from "../../Assets/layoffKafka.jpg"; // Update with actual image path
+
+const projects = [
+  {
+    imgPath: layoffKafka,
+    title: "Layoff Trends - Kafka & Real-time Processing",
+    category: "Data Engineering",
+    description: "A real-time data pipeline that tracks and analyzes global tech layoffs by ingesting, processing, and visualizing streaming data. Uses Apache Kafka for high-throughput message streaming, Docker for containerized deployment, and Grafana with Prometheus for real-time monitoring and interactive analytics dashboards. Implements Kafka Producers and Consumers for efficient data flow, Pandas for preprocessing, and MySQL for structured data storage and query optimization. Integrates with APIs to collect live layoff data, applies data wrangling techniques for trend detection, and utilizes alerting mechanisms to notify users of significant industry shifts.",
+    techStack: "Python, Apache Kafka, Docker, Grafana, Prometheus, Pandas, MySQL, REST APIs, Data Streaming, Kafka Producers & Consumers, Visual Studio Code",
+    ghLink: "https://github.com/ayantikanandi18/Layoff_Kafka",
+  },
+  {
+    imgPath: bloomingtonRentals,
+    title: "Bloomington Rentals - Geospatial Analysis",
+    category: "Data Analysis",
+    description: "A geospatial analysis project exploring rental price trends in Bloomington, using Python, GeoPandas, and Shapely for mapping rental distributions, geospatial transformations, and boundary overlays. It leverages Folium and Plotly for interactive maps, Matplotlib and Seaborn for static visualizations, Google Maps API for geocoding, Pandas and NumPy for data wrangling, scikit-learn for clustering and trend prediction, Prophet for time-series forecasting, and stores data in CSV, SQLite, and Google BigQuery after extraction with BeautifulSoup and Selenium.",
+    techStack: "Python, Pandas,NumPy,GeoPandas,BeautifulSoup,scikit-learn, Folium,Bokeh, Matplotlib, Google Colab",
+    ghLink: "https://github.com/ayantikanandi18/Bloomington_Rentals",
+  },
+  {
+    imgPath: resumeMaker,
+    title: "AI Resume Maker - NLP & Automation",
+    category: "AI & NLP",
+    description: "An AI-powered platform that tailors resumes based on job listings by extracting key skills and optimizing content for better applicant tracking system (ATS) compatibility. Integrates Google Gemini AI for advanced NLP-driven resume recommendations and keyword extraction from job descriptions. Uses SerpAPI to scrape real-time job postings and applies TF-IDF and Named Entity Recognition (NER) for skill extraction. Implements Flask for a user-friendly interface where users can upload resumes and receive AI-enhanced suggestions. Stores processed data in MySQL for structured analysis and utilizes Pandas for data preprocessing and formatting.",
+    techStack: "Python, Flask, Google Gemini AI, SerpAPI, NLP, TF-IDF, Named Entity Recognition (NER), MySQL, Pandas, Resume Parsing, ATS Optimization",
+    ghLink: "https://github.com/ayantikanandi18/Resume_Maker",
+  },
+  {
+    imgPath: sentimentAnalysis,
+    title: "Tech Layoffs Sentiment Analysis",
+    category: "AI & NLP",
+    description: "Analyzes online discussions about tech layoffs using natural language processing to extract sentiment trends and key insights from Reddit posts. Uses PRAW to scrape real-time discussions, preprocesses text with NLTK, and applies TF-IDF for keyword extraction. Implements VADER for rule-based sentiment classification and fine-tunes deep learning models using transformers for more accurate sentiment predictions. Applies topic modeling with Latent Dirichlet Allocation (LDA) to identify recurring themes and trends. Stores processed data in MySQL for structured querying and integrates data visualization tools like Matplotlib and Seaborn to generate sentiment trend reports.",
+    techStack: "Python, PRAW (Reddit API), NLTK, TF-IDF, VADER, Transformers, LDA, Scikit-learn, MySQL, Matplotlib, Seaborn, Data Visualization",
+    ghLink: "https://github.com/ayantikanandi18/SentimentAnalysis",
+  },
+  {
+    imgPath: ldaProject,
+    title: "Market Adaptation to AI - LDA & ML",
+    category: "Machine Learning",
+    description: "A research-driven study analyzing how industries adapt to AI innovations by extracting key discussion topics and predicting industry sentiment trends. Uses Latent Dirichlet Allocation (LDA) with Gensim for topic modeling to identify dominant themes in AI adoption and applies Random Forest for classification to categorize industry responses. Preprocesses textual data using NLTK and TF-IDF for feature extraction, leverages Scikit-learn for model training and evaluation, and employs MySQL for structured data storage. Integrates data visualization tools like Matplotlib and Seaborn to generate insightful trend reports and forecast AI adoption patterns across sectors.",
+    techStack: "Python, Scikit-learn, Gensim, LDA, Random Forest, NLTK, TF-IDF, MySQL, Matplotlib, Seaborn, Data Visualization",
+    ghLink: "https://github.com/ayantikanandi18/LDA",
+  },
+  {
+    imgPath: personalWebsite,
+    title: "Personal Portfolio - Full-Stack",
+    category: "Web Development",
+    description: "A personal portfolio website featuring an interactive UI, real-time GitHub project updates, and a dynamic skills showcase. Built with React.js and Bootstrap for a modern and responsive design, and powered by Node.js for backend functionalities. Utilizes Firebase for authentication, database storage, and hosting, enabling seamless updates and real-time data management. Implements smooth animations, dark mode toggle, and optimized performance for an engaging user experience.",
+    techStack: "React.js, Bootstrap, JavaScript, Node.js, Firebase, GitHub Pages, CSS, Responsive Design",
+    ghLink: "https://github.com/ayantikanandi18/Personal_website",
+  },
+];
 
 function Projects() {
   return (
     <Container fluid className="project-section">
       <Particle />
       <Container>
-        <h1 className="project-heading">
-          My Recent <strong className="purple">Works </strong>
+        <h1 className="project-heading" style={{ fontSize: "2.8rem", fontWeight: "bold", textAlign: "center" }}>
+          A few of my <strong className="purple">Projects</strong>
         </h1>
-        <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
+        <p style={{ color: "white", fontSize: "1.5rem", fontWeight: "500", textAlign: "center" }}>
+          Showcasing my expertise in <b>Data Engineering, Data Analytics and AI, ML</b>.
         </p>
-        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={chatify}
-              isBlog={false}
-              title="Chatify"
-              description="Personal Chat Room or Workspace to share resources and hangout with friends build with react.js, Material-UI, and Firebase. Have features which allows user for realtime messaging, image sharing as well as supports reactions on messages."
-              ghLink="https://github.com/soumyajit4419/Chatify"
-              demoLink="https://chatify-49.web.app/"
-            />
-          </Col>
+        <Row style={{ justifyContent: "center", paddingBottom: "30px" }}>
+          {projects.map((project, idx) => (
+            <Col md={5} className="project-card" key={idx}>
+              <Card className="p-4 shadow-lg border-0 rounded text-center" style={{ background: "rgba(170, 112, 167, 0.23)", color: "white", borderRadius: "15px" }}>
+                <Card.Img
+                  variant="top"
+                  src={project.imgPath}
+                  alt={project.title}
+                  className="img-fluid"
+                  style={{ borderRadius: "10px", opacity: "0.85" }}
+                />
+                <Card.Body>
+                  {/* Category Badge */}
+                  <span className="badge bg-light text-dark mb-2" style={{ fontSize: "0.9rem", padding: "5px 10px", borderRadius: "10px" }}>
+                    {project.category}
+                  </span>
 
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={bitsOfCode}
-              isBlog={false}
-              title="Bits-0f-C0de"
-              description="My personal blog page build with Next.js and Tailwind Css which takes the content from makdown files and renders it using Next.js. Supports dark mode and easy to write blogs using markdown."
-              ghLink="https://github.com/soumyajit4419/Bits-0f-C0de"
-              demoLink="https://blogs.soumya-jit.tech/"
-            />
-          </Col>
+                  {/* Project Title */}
+                  <Card.Title style={{ fontSize: "1.6rem", fontWeight: "bold", color: "#FFD700" }}>
+                    {project.title}
+                  </Card.Title>
 
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={editor}
-              isBlog={false}
-              title="Editor.io"
-              description="Online code and markdown editor build with react.js. Online Editor which supports html, css, and js code with instant view of website. Online markdown editor for building README file which supports GFM, Custom Html tags with toolbar and instant preview.Both the editor supports auto save of work using Local Storage"
-              ghLink="https://github.com/soumyajit4419/Editor.io"
-              demoLink="https://editor.soumya-jit.tech/"              
-            />
-          </Col>
+                  {/* Project Description */}
+                  <Card.Text style={{ fontSize: "1rem", marginBottom: "10px", color: "#DDD", lineHeight: "1.5" }}>
+                    {project.description}
+                  </Card.Text>
 
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={leaf}
-              isBlog={false}
-              title="Plant AI"
-              description="Used the plant disease dataset from Kaggle and trained a image classifer model using 'PyTorch' framework using CNN and Transfer Learning with 38 classes of various plant leaves. The model was successfully able to detect diseased and healthy leaves of 14 unique plants. I was able to achieve an accuracy of 98% by using Resnet34 pretrained model."
-              ghLink="https://github.com/soumyajit4419/Plant_AI"
-              demoLink="https://plant49-ai.herokuapp.com/"
-            />
-          </Col>
+                  {/* Tech Stack */}
+                  <p style={{ fontSize: "0.9rem", color: "#AAA", fontStyle: "italic" }}>
+                    <strong>Tech Stack:</strong> {project.techStack}
+                  </p>
 
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={suicide}
-              isBlog={false}
-              title="Ai For Social Good"
-              description="Using 'Natural Launguage Processing' for the detection of suicide-related posts and user's suicide ideation in cyberspace  and thus helping in sucide prevention."
-              ghLink="https://github.com/soumyajit4419/AI_For_Social_Good"
-              // demoLink="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" <--------Please include a demo link here
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={emotion}
-              isBlog={false}
-              title="Face Recognition and Emotion Detection"
-              description="Trained a CNN classifier using 'FER-2013 dataset' with Keras and tensorflow backened. The classifier sucessfully predicted the various types of emotions of human. And the highest accuracy obtained with the model was 60.1%.
-              Then used Open-CV to detect the face in an image and then pass the face to the classifer to predict the emotion of a person."
-              ghLink="https://github.com/soumyajit4419/Face_And_Emotion_Detection"
-              // demoLink="https://blogs.soumya-jit.tech/"      <--------Please include a demo link here 
-            />
-          </Col>
+                  {/* GitHub Button */}
+                  <Button variant="outline-light" href={project.ghLink} target="_blank" className="mt-2">
+                    <FaGithub size={20} style={{ marginRight: "5px" }} /> GitHub
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
         </Row>
       </Container>
     </Container>

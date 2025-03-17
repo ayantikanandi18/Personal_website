@@ -1,9 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
-import Type from "./Type";
+import Typewriter from "typewriter-effect";
 
 function Home() {
   return (
@@ -12,31 +11,47 @@ function Home() {
         <Particle />
         <Container className="home-content">
           <Row>
-            <Col md={7} className="home-header">
-              <h1 style={{ paddingBottom: 15 }} className="heading">
-                Hi There!{" "}
-                <span className="wave" role="img" aria-labelledby="wave">
-                  👋🏻
-                </span>
+            <Col md={12} className="home-header">
+
+              {/* Unique Greeting */}
+              <h1 className="greeting-text">
+               Greetings, I'm 
               </h1>
 
-              <h1 className="heading-name">
-                I'M
-                <strong className="main-name"> SOUMYAJIT BEHERA</strong>
+              {/* Name with Unique Animation */}
+              <h1 className="animated-name">
+                <span className="glow-text">Ayantika Nandi</span>
               </h1>
 
-              <div style={{ padding: 50, textAlign: "left" }}>
-                <Type />
-              </div>
-            </Col>
+              {/* Typewriter Effect - Below Name */}
+              <h2 className="typewriter-text">
+                <Typewriter
+                  options={{
+                    strings: [
+                      "An Innovative Thinker",
+                      "A Passionate Data Engineer",
+                      "A Cloud Enthusiast",
+                      "An AI & ML Explorer",
+                      "A Problem Solver",
+                    ],
+                    autoStart: true,
+                    loop: true,
+                    deleteSpeed: 50,
+                    delay: 75,
+                  }}
+                />
+              </h2>
 
-            <Col md={5} style={{ paddingBottom: 20 }}>
-              <img
-                src={homeLogo}
-                alt="home pic"
-                className="img-fluid"
-                style={{ maxHeight: "450px" }}
-              />
+              {/* Separator Line */}
+              <hr className="separator-line" />
+
+              {/* Tagline - Centered */}
+              <p className="tagline">
+                Data Engineer & Analyst with 3+ years of experience in building scalable data pipelines,  
+                optimizing cloud solutions, and leveraging AI/ML for real-time analytics,  
+                data visualization, and business intelligence.
+              </p>
+
             </Col>
           </Row>
         </Container>
