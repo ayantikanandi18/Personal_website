@@ -8,7 +8,6 @@ import bloomingtonRentals from "../../Assets/bloomingtonRentals.jpg";
 import resumeMaker from "../../Assets/resumeMaker.jpg";
 import sentimentAnalysis from "../../Assets/sentimentAnalysis.jpg";
 import ldaProject from "../../Assets/ldaProject.jpg";
-import personalWebsite from "../../Assets/personalWebsite.jpg";
 import layoffKafka from "../../Assets/layoffKafka.jpg"; // Update with actual image path
 
 const projects = [
@@ -52,14 +51,7 @@ const projects = [
     techStack: "Python, Scikit-learn, Gensim, LDA, Random Forest, NLTK, TF-IDF, MySQL, Matplotlib, Seaborn, Data Visualization",
     ghLink: "https://github.com/ayantikanandi18/LDA",
   },
-  {
-    imgPath: personalWebsite,
-    title: "Personal Portfolio - Full-Stack",
-    category: "Web Development",
-    description: "A personal portfolio website featuring an interactive UI, real-time GitHub project updates, and a dynamic skills showcase. Built with React.js and Bootstrap for a modern and responsive design, and powered by Node.js for backend functionalities. Utilizes Firebase for authentication, database storage, and hosting, enabling seamless updates and real-time data management. Implements smooth animations, dark mode toggle, and optimized performance for an engaging user experience.",
-    techStack: "React.js, Bootstrap, JavaScript, Node.js, Firebase, GitHub Pages, CSS, Responsive Design",
-    ghLink: "https://github.com/ayantikanandi18/Personal_website",
-  },
+  
 ];
 
 function Projects() {
