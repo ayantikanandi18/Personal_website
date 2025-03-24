@@ -3,16 +3,14 @@ import { Container, Row, Col } from "react-bootstrap";
 import Particle from "../Particle";
 import Home2 from "./Home2";
 import Typewriter from "typewriter-effect";
+import './Home.css';
 
 function Home() {
   return (
-    <section>
+    <section style={{ paddingBottom: '60px' }}> 
       <Container fluid className="home-section" id="home">
         <Particle />
-        <Container className="home-content">
-          <Row>
-            <Col md={12} className="home-header">
-
+        <Container className="home-content" style={{ marginBottom: '40px', textAlign: 'center' }}>
               {/* Unique Greeting */}
               <h1 className="greeting-text">
                Greetings, I'm 
@@ -24,7 +22,7 @@ function Home() {
               </h1>
 
               {/* Typewriter Effect - Below Name */}
-              <h2 className="typewriter-text">
+              <h2 className="typewriter-text" style={{ marginBottom: '40px', overflow: 'hidden', textAlign: 'center' }}>
                 <Typewriter
                   options={{
                     strings: [
@@ -46,14 +44,13 @@ function Home() {
               <hr className="separator-line" />
 
               {/* Tagline - Centered */}
-              <p className="tagline">
+              <p className="tagline" style={{ marginTop: '20px' }}>
                 Data Engineer & Analyst with 3+ years of experience in building scalable data pipelines,  
                 optimizing cloud solutions, and leveraging AI/ML for real-time analytics,  
                 data visualization, and business intelligence.
               </p>
 
-            </Col>
-          </Row>
+         
         </Container>
       </Container>
       <Home2 />

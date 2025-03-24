@@ -1,0 +1,21 @@
+@media (max-width: 768px) {
+    .greeting-text {
+      font-size: 24px;
+    }
+    .animated-name {
+      font-size: 28px;
+    }
+    .typewriter-text {
+      font-size: 18px;
+    }
+    .tagline {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .typewriter-text {
+      display: none;
+    }
+  }
+  
